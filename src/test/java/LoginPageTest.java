@@ -48,6 +48,7 @@ public void wrongLoginTest() {
 
         boolean isNullPasswordErrorDisplayed = loginPage.IncorrectPasswordMessage();
         Assert.assertTrue(isNullPasswordErrorDisplayed);
+
     }
 
 
