@@ -62,8 +62,5 @@ public class RandomUserGenerator {
     public User nullUser () {
         return new User(NullFirstname(),NullLastname(),NullUserName(),NullEmail(),NullPassword());
     }
-
-
-
 }
 
