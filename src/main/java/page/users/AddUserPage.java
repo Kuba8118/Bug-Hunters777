@@ -43,7 +43,8 @@ public class AddUserPage extends BasePage {
     @FindBy(xpath = "(//span[@class='help-inline'])[4]")
     public WebElement isNullUserName;
 
-
+    @FindBy (xpath = "//div[@class='toast toast-success']//div[text()='User details updated successfully']")
+    public WebElement updatedSuccessfully;
 
     public UserProfilePage addUser(User user) {
         webElementActions.sendKeys(firstName, user.getFirstname())
@@ -96,6 +97,17 @@ public class AddUserPage extends BasePage {
 
     public boolean nullUserName () {
         return isNullUserName.isDisplayed();
+    }
+
+    public AddUserPage changeName (String username) {
+        webElementActions.sendKeys(firstName, username)
+                .scrollToElement(addUserButton)
+                .click(addUserButton);
+        return this ;
+    }
+
+    public boolean isUpdatedSuccessfullyMessageVisible () {
+        return updatedSuccessfully.isDisplayed();
     }
 
 }

@@ -11,11 +11,6 @@ public class AddNewUserTest extends BaseDemoQATest {
         // Пустой публичный конструктор
     }
 
-    @BeforeTest
-    public void setUp () {
-        driver.get("https://spacexxx.talentlms.com/index");
-    }
-
     @Test
     public void addNewUserTest() {
 
