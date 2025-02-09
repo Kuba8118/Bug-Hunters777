@@ -11,11 +11,6 @@ public class AddNewUserTest extends BaseDemoQATest {
         // Пустой публичный конструктор
     }
 
-    @BeforeTest
-    public void setUp () {
-        driver.get("https://spacexxx.talentlms.com/index");
-    }
-
     @Test
     public void addNewUserTest() {
 
@@ -29,11 +24,8 @@ public class AddNewUserTest extends BaseDemoQATest {
         Assert.assertTrue(isSuccessMessageVisible);
     }
 
-
-
-
     @Test
-    public void WrongUserTest() {
+    public void InvalidUsernameLimitTest() {
 
         User randomUser = randomUserGenerator.randomUser();
         randomUser.setUsername(randomUserGenerator.randomUserNameMoreLimit());
@@ -45,6 +37,49 @@ public class AddNewUserTest extends BaseDemoQATest {
                 .isNotValidUserName();
         Assert.assertTrue(isSuccessMessageVisible);
     }
+
+    @Test
+    public void InvalidFirstnameLimitTest () {
+
+        User randomUser = randomUserGenerator.randomUser();
+        randomUser.setFirstname(randomUserGenerator.randomFirstNameMoreLimit());
+
+        boolean isSuccessMessageVisible = loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
+                .mooveToProfile()
+                .navigateToAddUserPage()
+                .addWrongUser(randomUser)
+                .isNotValidFirstName();
+        Assert.assertTrue(isSuccessMessageVisible);
+    }
+
+    @Test
+    public void InvalidLastnameLimitTest () {
+
+        User randomUser = randomUserGenerator.randomUser();
+        randomUser.setLastname(randomUserGenerator.randomLastNameMoreLimit());
+
+        boolean isSuccessMessageVisible = loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
+                .mooveToProfile()
+                .navigateToAddUserPage()
+                .addWrongUser(randomUser)
+                .isNotValidFirstName();
+        Assert.assertTrue(isSuccessMessageVisible);
+    }
+
+    @Test
+    public void InvalidEmailLimitTest () {
+        User randomUser = randomUserGenerator.randomUser();
+        randomUser.setEmail(randomUserGenerator.randomEmailMoreLimit());
+
+        boolean isSuccessMessageVisible = loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
+                .mooveToProfile()
+                .navigateToAddUserPage()
+                .addWrongUser(randomUser)
+                .isNotValidFirstName();
+        Assert.assertTrue(isSuccessMessageVisible);
+    }
+
+
 
     @Test
     public void WrongUserPasswordTest() {
@@ -85,5 +120,62 @@ public class AddNewUserTest extends BaseDemoQATest {
                 .nullEmail();
         Assert.assertTrue(isNullEmail111);
     }
+
+    @Test
+    public void isNullFirstname () {
+        User randomUser = randomUserGenerator.nullFirstname();
+
+        loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
+                .mooveToProfile()
+                .navigateToAddUserPage()
+                .addNullUser(randomUser);
+        boolean isNullFirstName111 = addUserPage
+                .nullFirstName();
+        Assert.assertTrue(isNullFirstName111);
+    }
+
+    @Test
+    public void isNullLastname () {
+        User randomUser = randomUserGenerator.nullLastname();
+
+        loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
+                .mooveToProfile()
+                .navigateToAddUserPage()
+                .addNullUser(randomUser);
+        boolean isNullLastName111 = addUserPage
+                .nullLastName();
+        Assert.assertTrue(isNullLastName111);
+    }
+
+    @Test
+    public void isNUllUsername () {
+        User randomUser = randomUserGenerator.nullUsername();
+
+        loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
+                .mooveToProfile()
+                .navigateToAddUserPage()
+                .addNullUser(randomUser);
+        boolean isNullUserName111 = addUserPage
+                .nullUserName();
+        Assert.assertTrue(isNullUserName111);
+    }
+
+    @Test
+    public void isNullEmail () {
+        User randomUser = randomUserGenerator.nullEmail();
+
+        loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
+                .mooveToProfile()
+                .navigateToAddUserPage()
+                .addNullUser(randomUser);
+        boolean isNullEmail111 = addUserPage
+                .nullEmail();
+        Assert.assertTrue(isNullEmail111);
+    }
+
+
+
+
+
 
 }

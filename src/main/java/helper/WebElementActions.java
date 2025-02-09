@@ -15,13 +15,13 @@ public class WebElementActions {
 
 
     public WebElementActions waitButtonToBeClickAble (WebElement element) {
-        new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(25))
+        new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOf(element));
         return this;
     }
 
     public WebElementActions waitElementToBeDisplayed(WebElement element) {
-        new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15))
+        new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOf(element));
         return this;
     }
@@ -41,6 +41,7 @@ public class WebElementActions {
 
     public WebElementActions sendKeys(WebElement element, String text) {
         waitElementToBeDisplayed(element);
+        element.clear();
         element.sendKeys(text);
         return this;
     }
@@ -79,5 +80,6 @@ public class WebElementActions {
         js.executeScript("arguments[0].style.border='3px solid yellow'", element);
         return this;
     }
+
 
 }

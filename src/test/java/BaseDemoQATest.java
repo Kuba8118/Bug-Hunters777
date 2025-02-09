@@ -3,6 +3,7 @@ import fileUtils.ConfigReader;
 import helper.WebElementActions;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import page.RandonEntityUtils.RandomUserGenerator;
 import page.dashboard.DashboardPage;
 import page.loginPage.LoginPage;
@@ -24,6 +25,11 @@ public class BaseDemoQATest {
     @BeforeSuite
     public void beforeSuite(){
         driver = Driver.getDriver();
+    }
+
+    @BeforeTest
+    public void setUp () {
+        driver.get("https://spacexxx.talentlms.com/index");
     }
 }
 
