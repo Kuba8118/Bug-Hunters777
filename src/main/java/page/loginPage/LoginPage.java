@@ -25,6 +25,14 @@ public class LoginPage extends BasePage {
     @FindBy(xpath ="(//span[@class='help-inline'])[2]")
     public WebElement IncorrectPassword;
 
+    @FindBy(xpath = "//span[@class='help-inline']")
+    public WebElement UsernameRequired;
+
+    @FindBy(xpath = "//span[@class='help-inline']")
+    public WebElement PasswordRequired;
+
+    @FindBy (xpath = "//div[@class='toast-message']")
+    public WebElement incorrectMessageUsernamePassword;
 
     public DashboardPage doLogin(String username, String password) {
         webElementActions.sendKeys(login, username)
@@ -33,26 +41,44 @@ public class LoginPage extends BasePage {
         return new DashboardPage();
     }
 
-    public LoginPage doIncorrectLogin(String username, String password) {
-        webElementActions.sendKeys(login, username)
-                .sendKeys(this.password,password)
-                .click(submit);
-        return this;
+    public boolean usernameRequiredMessage (String username, String password) {
+        doLogin(username, password);
+        return UsernameRequired.isDisplayed();
     }
 
-    public boolean isIncorrectMessageVisible() {
-        return incorrect.isDisplayed();
+    public boolean passwordRequaredMessage (String username, String password) {
+        doLogin(username, password);
+        return PasswordRequired.isDisplayed();
     }
 
-    public boolean IncorrectUserNameMessage () {
-        return IncorrectUserName.isDisplayed();
+    public boolean isIncorrectMessageVisibleLoginPageUsername (String username, String password) {
+        doLogin(username, password);
+        return incorrectMessageUsernamePassword.isDisplayed();
     }
 
-    public boolean IncorrectPasswordMessage () {
-        return IncorrectPassword.isDisplayed();
+    public boolean isIncorrectMessageVisibleLoginPagePassword (String username, String password) {
+        doLogin(username, password);
+        return incorrectMessageUsernamePassword.isDisplayed();
     }
 
+        public LoginPage doIncorrectLogin (String username, String password){
+            webElementActions.sendKeys(login, username)
+                    .sendKeys(this.password, password)
+                    .click(submit);
+            return this;
+        }
 
+        public boolean isIncorrectMessageVisible () {
+            return incorrect.isDisplayed();
+        }
+
+        public boolean IncorrectUserNameMessage () {
+            return IncorrectUserName.isDisplayed();
+        }
+
+        public boolean IncorrectPasswordMessage () {
+            return IncorrectPassword.isDisplayed();
+        }
 
 
 

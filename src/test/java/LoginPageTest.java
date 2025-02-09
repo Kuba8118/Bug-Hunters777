@@ -29,26 +29,49 @@ public class LoginPageTest extends BaseDemoQATest {
         Assert.assertTrue(isSuccessMessageVisible);
     }
 
-@Test
-public void wrongLoginTest() {
+    @Test
+    public void wrongLoginTest() {
 
-    User randomUser = randomUserGenerator.randomUser();
+        User randomUser = randomUserGenerator.randomUser();
 
-    boolean isErrorDisplayed = loginPage.doIncorrectLogin("Kanat","Kanat7890")
-            .isIncorrectMessageVisible();
-    Assert.assertTrue(isErrorDisplayed);
-}
+        boolean isErrorDisplayed = loginPage.doIncorrectLogin("Kanat", "Kanat7890")
+                .isIncorrectMessageVisible();
+        Assert.assertTrue(isErrorDisplayed);
+    }
 
     @Test
     public void nullLoginTest() {
 
-        boolean isNullLoginErrorDisplayed = loginPage.doIncorrectLogin("","")
+        boolean isNullLoginErrorDisplayed = loginPage.doIncorrectLogin("", "")
                 .IncorrectUserNameMessage();
         Assert.assertTrue(isNullLoginErrorDisplayed);
 
         boolean isNullPasswordErrorDisplayed = loginPage.IncorrectPasswordMessage();
         Assert.assertTrue(isNullPasswordErrorDisplayed);
+    }
 
+    @Test
+    public void emptyUsername() {
+        boolean isSuccessMessageVisible = loginPage.usernameRequiredMessage("", ConfigReader.getProperty("password"));
+        Assert.assertTrue(isSuccessMessageVisible);
+    }
+
+    @Test
+    public void emptyPassword() {
+        boolean isIncorrectMessageVisible = loginPage.passwordRequaredMessage(ConfigReader.getProperty("userName"), (""));
+        Assert.assertTrue(isIncorrectMessageVisible);
+    }
+
+    @Test
+    public void incorrectLoginTestLoginPage() {
+        boolean isIncorrectMessageVisible = loginPage.isIncorrectMessageVisibleLoginPageUsername(("jhsjkhsjkhcjkhkjhc"), (ConfigReader.getProperty("password")));
+        Assert.assertTrue(isIncorrectMessageVisible);
+    }
+
+    @Test
+    public void incorrectPasswordLoginPage() {
+        boolean isIncorrectMessageVisible = loginPage.isIncorrectMessageVisibleLoginPagePassword(ConfigReader.getProperty("userName"), (("ghjcgshjdcsdcs")));
+        Assert.assertTrue(isIncorrectMessageVisible);
     }
 
 

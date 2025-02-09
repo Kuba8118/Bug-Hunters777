@@ -28,6 +28,9 @@ public class AddUserPage extends BasePage {
     @FindBy(xpath = "(//span[@class='help-inline'])[1]")
     public WebElement notValidUserNAme;
 
+    @FindBy(xpath = "//span[contains(text(), 'cannot exceed') and @class='help-inline']")
+    public WebElement notValidFirstNAme;
+
     @FindBy(xpath = "(//span[@class='help-inline'])[2]")
     public WebElement WrongPassword;
 
@@ -40,11 +43,12 @@ public class AddUserPage extends BasePage {
     @FindBy(xpath = "(//span[@class='help-inline'])[3]")
     public WebElement isNullEmail;
 
-    @FindBy(xpath = "(//span[@class='help-inline'])[4]")
+    @FindBy(xpath = "//span[contains(text(), 'is required') and @class='help-inline']")
     public WebElement isNullUserName;
 
-    @FindBy (xpath = "//div[@class='toast toast-success']//div[text()='User details updated successfully']")
+    @FindBy(xpath = "//div[@class='toast toast-success']//div[text()='User details updated successfully']")
     public WebElement updatedSuccessfully;
+
 
     public UserProfilePage addUser(User user) {
         webElementActions.sendKeys(firstName, user.getFirstname())
@@ -65,11 +69,16 @@ public class AddUserPage extends BasePage {
                 .click(addUserButton);
         return this;
     }
-    public boolean isNotValidUserName () {
+
+    public boolean isNotValidUserName() {
         return notValidUserNAme.isDisplayed();
     }
 
-    public boolean WrongPasswordUserName () {
+    public boolean isNotValidFirstName () {
+        return notValidFirstNAme.isDisplayed();
+    }
+
+    public boolean WrongPasswordUserName() {
         return WrongPassword.isDisplayed();
     }
 
@@ -83,32 +92,67 @@ public class AddUserPage extends BasePage {
         return this;
     }
 
-    public boolean nullFirstName () {
+    public boolean nullFirstName() {
         return isNullFirstName.isDisplayed();
     }
 
-    public boolean nullLastName () {
+    public boolean nullLastName() {
         return isNullLastName.isDisplayed();
     }
 
-    public boolean nullEmail () {
+    public boolean nullEmail() {
         return isNullEmail.isDisplayed();
     }
 
-    public boolean nullUserName () {
+    public boolean nullUserName() {
         return isNullUserName.isDisplayed();
     }
 
-    public AddUserPage changeName (String username) {
+    public AddUserPage changeFirstName(String username) {
         webElementActions.sendKeys(firstName, username)
                 .scrollToElement(addUserButton)
                 .click(addUserButton);
-        return this ;
+        return this;
     }
 
-    public boolean isUpdatedSuccessfullyMessageVisible () {
+    public AddUserPage changeLastName(String username) {
+        webElementActions.sendKeys(lastName, username)
+                .scrollToElement(addUserButton)
+                .click(addUserButton);
+        return this;
+    }
+
+    public AddUserPage changeLoginName(String username) {
+        webElementActions.sendKeys(login, username)
+                .scrollToElement(addUserButton)
+                .click(addUserButton);
+        return this;
+    }
+
+    public AddUserPage changePasswordName(String username) {
+        webElementActions.sendKeys(password, username)
+                .scrollToElement(addUserButton)
+                .click(addUserButton);
+        return this;
+    }
+
+    public AddUserPage changeEmail(String username) {
+        webElementActions.sendKeys(email, username)
+                .scrollToElement(addUserButton)
+                .click(addUserButton);
+        return this;
+    }
+
+
+
+
+
+
+
+
+
+    public boolean isUpdatedSuccessfullyMessageVisible() {
         return updatedSuccessfully.isDisplayed();
     }
 
 }
-

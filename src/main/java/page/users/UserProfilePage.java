@@ -6,22 +6,26 @@ import page.BasePage;
 
 public class UserProfilePage extends BasePage {
 
+
     @FindBy(xpath = "//div[@class='toast toast-info']")
     public WebElement successMessage;
 
-    @FindBy (xpath = "//a[@title=\"Users\"]")
-    public WebElement usersBtn;
+//    @FindBy (xpath = "//a[@title=\"Users\"]")
+//    public WebElement usersBtn;
 
 
 
     public boolean isSuccessMessageVisible() {
+
         return successMessage.isDisplayed();
     }
 
-    public UserListPage navigateToUserListPage () {
-        usersBtn.click();
-        return new UserListPage();
-    }
+//    public UserListPage navigateToUserListPage () {
+//        usersBtn.click();
+//        return new UserListPage();
+//    }
+
+
 
     //td[contains(@class, 'tl-align-left')]//span[contains(@title, 'keith.koelpin')]
 
