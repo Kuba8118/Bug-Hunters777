@@ -1,8 +1,8 @@
-package page.users;
+package com.digital_nomads.page.users;
 
+import com.digital_nomads.page.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import page.BasePage;
 
 public class UserProfilePage extends BasePage {
 

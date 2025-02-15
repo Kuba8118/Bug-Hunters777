@@ -1,4 +1,4 @@
-package entity;
+package com.digital_nomads.entity;
 
 import lombok.*;
 

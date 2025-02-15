@@ -1,8 +1,8 @@
-package page;
+package com.digital_nomads.page;
 
 
-import driver.Driver;
-import helper.WebElementActions;
+import com.digital_nomads.driver.Driver;
+import com.digital_nomads.helper.WebElementActions;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class  BasePage {

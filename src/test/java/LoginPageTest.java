@@ -1,19 +1,21 @@
-import entity.User;
-import fileUtils.ConfigReader;
+import com.digital_nomads.entity.User;
+import com.digital_nomads.fileUtils.ConfigReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import page.loginPage.LoginPage;
 
-public class LoginPageTest extends BaseDemoQATest {
+public class LoginPageTest extends BaseTest {
 
     public LoginPageTest() {
         // Пустой публичный конструктор
     }
 
     @BeforeTest
-    public void setUp() {
-        driver.get("https://spacexxx.talentlms.com/index");
+    public void setUp () {
+        driver.get("https://khantenirm.talentlms.com/index");
+        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"));
+        dashboardPage.moveToProfile();;
+
     }
 
     @Test
@@ -22,7 +24,7 @@ public class LoginPageTest extends BaseDemoQATest {
         User randomUser = randomUserGenerator.randomUser();
 
         boolean isSuccessMessageVisible = loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
-                .mooveToProfile()
+                .moveToProfile()
                 .navigateToAddUserPage()
                 .addUser(randomUser)
                 .isSuccessMessageVisible();

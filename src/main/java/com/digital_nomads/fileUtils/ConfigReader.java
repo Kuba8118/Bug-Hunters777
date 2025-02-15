@@ -1,4 +1,4 @@
-package fileUtils;
+package com.digital_nomads.fileUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,6 +26,7 @@ public class ConfigReader {
     public static String getProperty(String key) {
         return properties.getProperty(key);
     }
+
 
     public static void main(String[] args) {
         System.out.println(getProperty("browserType").trim());

@@ -1,6 +1,6 @@
-package helper;
+package com.digital_nomads.helper;
 
-import driver.Driver;
+import com.digital_nomads.driver.Driver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -44,11 +44,21 @@ public class WebElementActions {
         element.sendKeys(text);
         return this;
     }
+    public WebElementActions clear(WebElement element){
+        waitElementToBeDisplayed(element);
+        element.clear();
+        return this;
+    }
+
 
     public WebElementActions doubleClick (WebElement element) {
         waitElementToBeDisplayed(element);
         waitButtonToBeClickAble(element);
         actions.doubleClick(element).perform();
+        return this;
+    }
+    public WebElementActions perform(){
+        actions.perform();
         return this;
     }
 

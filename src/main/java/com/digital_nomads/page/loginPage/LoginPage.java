@@ -1,9 +1,9 @@
-package page.loginPage;
+package com.digital_nomads.page.loginPage;
 
+import com.digital_nomads.page.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import page.BasePage;
-import page.dashboard.DashboardPage;
+import com.digital_nomads.page.dashboard.DashboardPage;
 
 public class LoginPage extends BasePage {
 

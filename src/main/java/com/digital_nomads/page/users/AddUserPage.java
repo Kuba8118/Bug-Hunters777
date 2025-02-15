@@ -1,9 +1,9 @@
-package page.users;
+package com.digital_nomads.page.users;
 
-import entity.User;
+import com.digital_nomads.entity.User;
+import com.digital_nomads.page.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import page.BasePage;
 
 public class AddUserPage extends BasePage {
 

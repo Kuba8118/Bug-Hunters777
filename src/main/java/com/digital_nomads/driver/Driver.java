@@ -1,6 +1,6 @@
-package driver;
+package com.digital_nomads.driver;
 
-import fileUtils.ConfigReader;
+import com.digital_nomads.fileUtils.ConfigReader;
 import org.openqa.selenium.WebDriver;
 
 public class Driver {
@@ -30,6 +30,17 @@ public class Driver {
             }
         }
         return driver;
+    }
+    public static void closeDriver(){
+        try {
+            if (driver != null){
+                driver.close();
+                driver.quit();
+                driver=null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 

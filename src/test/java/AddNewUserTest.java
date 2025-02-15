@@ -1,11 +1,10 @@
-import entity.User;
-import fileUtils.ConfigReader;
+import com.digital_nomads.entity.User;
+import com.digital_nomads.fileUtils.ConfigReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import page.users.AddUserPage;
 
-public class AddNewUserTest extends BaseDemoQATest {
+public class AddNewUserTest extends BaseTest {
 
     public AddNewUserTest() {
         // Пустой публичный конструктор
@@ -22,7 +21,7 @@ public class AddNewUserTest extends BaseDemoQATest {
         User randomUser = randomUserGenerator.randomUser();
 
         boolean isSuccessMessageVisible = loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
-                .mooveToProfile()
+                .moveToProfile()
                 .navigateToAddUserPage()
                 .addUser(randomUser)
                 .isSuccessMessageVisible();
@@ -39,7 +38,7 @@ public class AddNewUserTest extends BaseDemoQATest {
         randomUser.setUsername(randomUserGenerator.randomUserNameMoreLimit());
 
         boolean isSuccessMessageVisible = loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
-                .mooveToProfile()
+                .moveToProfile()
                 .navigateToAddUserPage()
                 .addWrongUser(randomUser)
                 .isNotValidUserName();
@@ -53,7 +52,7 @@ public class AddNewUserTest extends BaseDemoQATest {
         randomUser.setPassword(randomUserGenerator.randomUserWrongPassword());
 
         boolean isSuccessMessageVisible = loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
-                .mooveToProfile()
+                .moveToProfile()
                 .navigateToAddUserPage()
                 .addWrongUser(randomUser)
                 .WrongPasswordUserName();
@@ -66,7 +65,7 @@ public class AddNewUserTest extends BaseDemoQATest {
         User randomUser = randomUserGenerator.nullUser();
 
         loginPage.doLogin(ConfigReader.getProperty("userName"),ConfigReader.getProperty("password"))
-                .mooveToProfile()
+                .moveToProfile()
                 .navigateToAddUserPage()
                 .addNullUser(randomUser);
         boolean isNullFirstName111 = addUserPage
