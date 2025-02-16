@@ -85,9 +85,9 @@
                 <version>3.8.0</version>
                 <configuration>
                     <!--suppress UnresolvedMavenProperty -->
-                    <source>14</source>
+                    <source>17</source>
                     <!--suppress UnresolvedMavenProperty -->
-                    <target>14</target>
+                    <target>17</target>
                 </configuration>
             </plugin>
             <plugin>
