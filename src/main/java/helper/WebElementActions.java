@@ -1,8 +1,7 @@
 package helper;
 
 import driver.Driver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -79,5 +78,41 @@ public class WebElementActions {
         js.executeScript("arguments[0].style.border='3px solid yellow'", element);
         return this;
     }
+
+    public boolean isElementDisplayed(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return false;
+        }
+    }
+
+    public void hoverOverElement(WebElement element) {
+        actions.moveToElement(element).perform();
+    }
+
+    public WebElementActions logout() {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+
+        // Ожидание, пока кнопка Logout станет кликабельной
+        WebElement logoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Logout']")));
+
+        // Проверяем, видна ли кнопка перед кликом
+        if (logoutButton.isDisplayed()) {
+            logoutButton.click();
+        } else {
+            throw new RuntimeException("Кнопка 'Logout' не видна на странице!");
+        }
+
+        // Ожидание появления формы логина (проверь правильность локатора!)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='login']")));
+
+        return this;
+    }
+
+
+
+
+
 
 }

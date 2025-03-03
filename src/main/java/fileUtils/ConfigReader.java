@@ -23,6 +23,10 @@ public class ConfigReader {
         }
     }
 
+    public static String getValue(String key) {
+        return properties.getProperty(key.trim());
+    }
+
     public static String getProperty(String key) {
         return properties.getProperty(key);
     }
